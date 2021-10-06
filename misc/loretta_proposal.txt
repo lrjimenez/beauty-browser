@@ -1,0 +1,37 @@
+## Project Proposal
+
+### Overview
+
+My project will allow users to browse from a selection of makeup products, and when clicked,
+ shows all the information about that product
+
+### Technologies required (besides typical Hackbright tech stack)
+
+- Makeup API https://makeup-api.herokuapp.com/
+- Twitter API
+
+### Data
+
+- All of the product records in offered by the Makeup API
+
+### Roadmap
+
+#### MVP
+
+User is able to browse products
+Users can select a product to view more information
+
+
+#### 2.0
+
+User can save a product and add their own review
+Users will see a word cloud of twitter mentions of the product
+
+#### 3.0
+
+- Offer additional sources for products
+- Offer more media sources for visualization
+
+### Notes
+
+No more notes for now.

@@ -1,0 +1,16 @@
+body {
+    width: 650px;
+    margin: 0 auto;
+    font-family: 'Helvetica', sans-serif;
+  }
+  
+  main {
+    display: grid;
+    grid-template:
+      'menu cart' minmax(200px, auto)
+      'status status' auto / 1fr 1fr;
+    margin-bottom: 100px;
+  }
+  
+ 
+  
