@@ -1,4 +1,4 @@
-
+"""Models for Beauty Browser app."""
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -15,7 +15,7 @@ class Brand(db.Model):
 
     def __repr__(self):
         return f"<Brand brand_id={self.brand_id} company_name={self.company_name}>"
-    brand = db.relationship('Product', back_populates = "products")
+    products = db.relationship('Product', back_populates = "brand")
 
 
 class Product_Type(db.Model):
@@ -28,7 +28,7 @@ class Product_Type(db.Model):
 
     def __repr__(self):
         return f"<Product_Type product_type_id={self.product_type_id} product_type={self.product_type}>"
-    product_type = db.relationship('Product', back_populates = "products")
+    products = db.relationship('Product', back_populates = "product_type")
     
 
 class Product(db.Model):
@@ -47,12 +47,12 @@ class Product(db.Model):
 
     def __repr__(self):
         return f"<Product product_id={self.product_id} product_name={self.product_name}>"
-    product = db.relationship('Brand', back_populates = "brands")
-    product = db.relationship('Product_Type', back_populates = "product_types")
-    product = db.relationship('Formulation', back_populates = "formulations")
-    product = db.relationship('Currency', back_populates = "currencies")
-    product = db.relationship('Image', back_populates = "images")
-    product= db.relationship('Tag', back_populates = "tags")
+    brand = db.relationship('Brand', back_populates = "products")
+    product_type = db.relationship('Product_Type', back_populates = "products")
+    formulation = db.relationship('Formulation', back_populates = "products")
+    currencies = db.relationship('Currency', back_populates = "products")
+    images = db.relationship('Image', back_populates = "product")
+    tags = db.relationship('Tag', back_populates = "products")
     
 
 class Image(db.Model):
@@ -66,7 +66,7 @@ class Image(db.Model):
 
     def __repr__(self):
         return f"<Image image_id={self.image_id} image_link={self.image_link}>"
-    image = db.relationship('Product', back_populates = "products")
+    product = db.relationship('Product', back_populates = "images")
 
 
 class Formulation(db.Model):
@@ -79,7 +79,7 @@ class Formulation(db.Model):
 
     def __repr__(self):
         return f"<Formulation formulation_id={self.formulation_id} formulation_category={self.formulation_category}>"
-    formulation = db.relationship('Product', back_populates = "products")
+    products = db.relationship('Product', back_populates = "formulation")
 
 class Tag(db.Model):
     """A Tag."""
@@ -89,26 +89,24 @@ class Tag(db.Model):
     tag_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     product_tag = db.Column(db.String)
     product_id = db.Column(db.Integer, db.ForeignKey("products.product_id"))
-    
 
     def __repr__(self):
         return f"<Tag tag_id={self.tag_id} product_tag={self.product_tag}>"
-    tag = db.relationship('Product', back_populates = "products")
+    products = db.relationship('Product', back_populates = "tags")
     
 
 class Currency(db.Model):
-    """A Tag."""
+    """A Currency."""
 
     __tablename__ = "currencies"
 
     currency_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     currency_type = db.Column(db.String)
     currency_sign = db.Column(db.String)
-    
 
     def __repr__(self):
         return f"<Currency currency_id={self.currency_id} currency_type={self.currency_type}>"
-    currency = db.relationship('Product', back_populates = "products")
+    products = db.relationship('Product', back_populates = "currencies")
 
 
 def connect_to_db(app):
@@ -127,6 +125,4 @@ if __name__ == "__main__":
     app = Flask(__name__)
     connect_to_db(app)
     db.create_all()
-    dollar = Currency(currency_type = "dollar", currency_sign = "$")
-    db.session.add(dollar)
-    db.session.commit()
+    

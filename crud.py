@@ -3,7 +3,7 @@
 from model import db, Brand, Product_Type, Product, Image, Formulation, Tag, Currency, connect_to_db
 
 
-def create_brand(email, password):
+def create_brand(company_name, company_website):
     """Create and return a brand"""
 
     brand = Brand(company_name=company_name, company_website=company_website)
@@ -68,7 +68,7 @@ def tag(product_tag):
 
 
 def create_currency(currency_type, currency_sign):
-    """Create and return a new user."""
+    """Create a type of currency."""
 
     currency = Currency(currency_type=currency_type, currency_sign=currency_sign)
 
