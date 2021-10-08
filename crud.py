@@ -48,7 +48,7 @@ def create_image(image_link):
 def create_formulation(formulation_category):
     """Create and return a formulation."""
 
-    formulation = Formulation(formulation_category)
+    formulation = Formulation(formulation_category=formulation_category)
 
     db.session.add(formulation)
     db.session.commit()

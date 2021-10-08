@@ -39,10 +39,10 @@ class Product(db.Model):
     product_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     product_name = db.Column(db.String)
     description = db.Column(db.String)
-    rating = db.Column(db.String)
+    rating = db.Column(db.String, nullable=True)
     brand_id = db.Column(db.Integer, db.ForeignKey("brands.brand_id"))
     product_type_id = db.Column(db.Integer, db.ForeignKey("product_types.product_type_id"))
-    formulation_id = db.Column(db.Integer, db.ForeignKey("formulations.formulation_id"))
+    formulation_id = db.Column(db.Integer, db.ForeignKey("formulations.formulation_id"), nullable=True)
     currency_id = db.Column(db.Integer, db.ForeignKey("currencies.currency_id"))
 
     def __repr__(self):
