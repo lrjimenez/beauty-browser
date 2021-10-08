@@ -56,7 +56,7 @@ def create_formulation(formulation_category):
     return formulation
 
 
-def tag(product_tag):
+def create_tag(product_tag):
     """Create and return a tag."""
 
     tag = Tag(product_tag=product_tag)

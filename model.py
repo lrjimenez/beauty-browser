@@ -87,7 +87,7 @@ class Tag(db.Model):
     __tablename__ = "tags"
 
     tag_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    product_tag = db.Column(db.String)
+    product_tag = db.Column(db.String, nullable=True)
     product_id = db.Column(db.Integer, db.ForeignKey("products.product_id"))
 
     def __repr__(self):
