@@ -1,37 +1,17 @@
 
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Beauty Browser</title>
-      <link rel="stylesheet" href="/static/css/style.css">
-      <script
-        src="http://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-        crossorigin="anonymous"></script>
-    </head>
-  
-        <body>
-          <header>
-            <h1>Hello, Gorgeous!</h1>
-          </header>
-          <div
-            id="browse-by-choice"
-            class="choice-window"
-          >
-            <div class="window-body">
-              <p>
-              How would you like to browse makeup today?
-              </p>
-              <form>
-                <button type="submit">Browse by product type</button>
-              </form>
-            </div>
-      
-            <div class="window-footer">
-             
-            </div>
-        </div>
-        </body>
-      </html>
+  {% extends 'base.html' %}
+
+  {% block content %}
+  <div
+    id="browse-by-choice"
+    class="choice-window"
+  >
+    <div class="window-body">
+      <p>
+      How would you like to browse makeup today?
+      </p>
+      <form action="/type">
+        <button class="browse-choice" id="browse-by-product" type="submit">Browse by product type</button>
+      </form>
+    </div>
+    {% endblock %}
