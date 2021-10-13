@@ -14,10 +14,10 @@
 
         {% for type in all_product_types %}
             <tr>
-                <td>{{ type[0] }}</td>
-                <td>{{ type[1] }}</td>
-                <td>{{ type[2] }}</td>
-                <td>{{ type[3] }}</td>
+                <td><form action="/{{ type[0] }}">
+                  <button class="product-type-choice" id="browse-by-lipliner" type="submit"> {{ type[0] }}</button>
+                </form>
+              </td>
             </tr>
         {% endfor %}
     </table>
