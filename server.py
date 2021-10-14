@@ -2,8 +2,8 @@
 
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from model import connect_to_db
+import crud
 
 app = Flask(__name__)
 
@@ -12,33 +12,39 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/type')
-def browse_by_type():
+@app.route('/products')
+def product():
+    all_products = crud.get_products()
+    return render_template('products.html', all_products=all_products)
+
+# @app.route('/type')
+# def browse_by_type():
 
 
-    """Query database and return all types of products."""
+#     """Query database and return all types of products."""
 
-    sql = "SELECT product_type FROM product_types;"
+#     sql = "SELECT product_type FROM product_types;"
 
-    cursor = db.session.execute(sql)
-    all_product_types = cursor.fetchall()
+#     cursor = db.session.execute(sql)
+#     all_product_types = cursor.fetchall()
 
-    return render_template('type.html', all_product_types=all_product_types)
-##############################################################################
-# Helper functions
+#     return render_template('type.html', all_product_types=all_product_types)
 
-def connect_to_db(app):
-    """Connect the database to our Flask app."""
+# @app.route('/lip_liner')
+# def browse_by_type():
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///beauty"
-    app.config["SQLALCHEMY_ECHO"] = False
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    db.app = app
-    db.init_app(app)
-    print("Connected to db!")
+
+#     """Query database and return all lipliners."""
+
+#     sql = "SELECT product_type FROM product_types;"
+
+#     cursor = db.session.execute(sql)
+#     all_product_types = cursor.fetchall()
+
+#     return render_template('type.html', all_product_types=all_product_types)
+
 
 
 if __name__ == '__main__':
     connect_to_db(app)
-    db.create_all()
     app.run(debug=True, host='0.0.0.0')

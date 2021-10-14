@@ -23,10 +23,10 @@ def create_product_type(product_type):
 
     return product_type
 
-def create_product(product_name, description, rating):
+def create_product(product_name, description, rating, brand_id):
     """Create and return a product."""
 
-    product = Product(product_name=product_name, description=description, rating=rating)
+    product = Product(product_name=product_name, description=description, rating=rating, brand_id=brand_id)
 
     db.session.add(product)
     db.session.commit()
@@ -76,6 +76,10 @@ def create_currency(currency_type, currency_sign):
     db.session.commit()
 
     return currency
+
+def get_products():
+    """Return all products."""
+    return Product.query.all()
 
 
 if __name__ == '__main__':

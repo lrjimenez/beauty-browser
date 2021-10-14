@@ -1,7 +1,7 @@
 """Models for Beauty Browser app."""
 from flask_sqlalchemy import SQLAlchemy
 
-
+db = SQLAlchemy()
 
 
 class Brand(db.Model):
@@ -109,11 +109,22 @@ class Currency(db.Model):
     products = db.relationship('Product', back_populates = "currencies")
 
 
+##############################################################################
+# Helper functions
+
+def connect_to_db(app):
+    """Connect the database to our Flask app."""
+
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///beauty"
+    app.config["SQLALCHEMY_ECHO"] = False
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    db.app = app
+    db.init_app(app)
+    print("Connected to db!")
 
 
 
-
-_if __name__ == "__main__":
+if __name__ == "__main__":
     # As a convenience, if we run this module interactively, it will leave
     # you in a state of being able to work with the database directly.
 
@@ -123,5 +134,6 @@ _if __name__ == "__main__":
     app = Flask(__name__)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     connect_to_db(app)
-    print("Connected to DB.")
+    
+
     
