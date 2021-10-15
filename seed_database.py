@@ -14,8 +14,8 @@ model.db.create_all()
 # Load makeup data from JSON file
 with open('data/products.json') as f:
     makeup_data = json.loads(f.read())
-    #small_set = makeup_data[0:5]
-    #pprint(small_set)
+    small_set = makeup_data[0:1]
+    pprint(small_set)
     
 # Create brands, store them in a set
 brands_in_db = set()
@@ -30,11 +30,14 @@ for product in makeup_data:
     brands_in_db.add(brand_tuple)
 
 print("Number of unique_brands: ", len(brands_in_db))
-
+#print("brands_in_db: ", brands_in_db)
+print("type brands_in_db: ", type(brands_in_db))
 brands_dict = {}
 
 #for tuple in set
 for brand in brands_in_db:
+    #print("***brand: ", brand)
+    #print("type of brand: ", type(brand))
     db_brand = crud.create_brand(brand[0], brand[1]) #created a brand object of the Brand class using crud function
     brands_dict[db_brand.company_name] = db_brand.brand_id #adding to dictionary
 
@@ -42,7 +45,7 @@ for brand in brands_in_db:
 #brand id is going to be used for the products table
 print("*********************")
 print("*********************")
-print('brands_dict:', brands_dict)
+#print('brands_dict:', brands_dict)
 print("*********************")
 print("*********************")
    
@@ -50,35 +53,44 @@ print("*********************")
 # Create product_types, store them in a set
 product_types_in_db = set()
 for product in makeup_data:
-    product_type = (
-        product['product_type'],
-    )
+    product_type = product['product_type']
+    #print(product_type)
+    
     #add each type to set of product_types
     product_types_in_db.add(product_type)
-print("Number of unique product_types: ", len(product_types_in_db))
-
+#print("Number of unique product_types: ", len(product_types_in_db))
+print("product_types_in_db: ", product_types_in_db)
+print("type product_types_in_db: ", type(product_types_in_db))
 product_type_ids = {}
 
-for type in product_types_in_db:
-    db_product_type = crud.create_product_type(type)
+for every_type in product_types_in_db:
+    #print("***type: ", every_type)
+    #print("type of type: ", type(every_type))
+    db_product_type = crud.create_product_type(every_type)
+    #print("******db_product_type.product_type ", db_product_type.product_type)
+    #print("******db_product_type.product_type_id ", db_product_type.product_type_id)
     product_type_ids[db_product_type.product_type]=db_product_type.product_type_id
+#dictionary with product type and product type id values
+#product type id is going to be used for the products table
 print("*********************")
 print("*********************")
 print('product_type_ids', product_type_ids)
+print("type of product_type_ids: ", type(product_type_ids))
 print("*********************")
 print("*********************")
 
 # Create products, store them in a set
 products_in_db = set()
 for product in makeup_data:
-    product_name, description, rating, company_name = (
+    product_name, description, rating, company_name, product_type = (
         product['name'],
         product['description'],
         product['rating'],
         product['brand'],
+        product['product_type']
     )
     #create a tuple with products
-    product_tuple = (product_name, description, rating, company_name)
+    product_tuple = (product_name, description, rating, company_name, product_type)
     #add tuple to set of products
     products_in_db.add(product_tuple)
 
@@ -89,7 +101,11 @@ for product in products_in_db:
     company_name = product[3]
     brand_id = brands_dict[company_name] #brand_id, value from the brands_dict using the company name as the key
     # print("BRAND ID: ", brand_id)
-    product_type_id = product_type_ids[product_type]
+    product_type_id = product_type_ids[product[4]]
+    #now the product_type_id is always the same number 
+    print("******product_type_id: ", product_type_id)
+    #print("product ***********: ", product)
+    print("product_type: ", product[4])
     db_product = crud.create_product(product[0], product[1], product[2], brand_id, product_type_id)
     # print(db_product)
     # print(db_product.brand_id)

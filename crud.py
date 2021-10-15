@@ -23,10 +23,10 @@ def create_product_type(product_type):
 
     return product_type
 
-def create_product(product_name, description, rating, brand_id):
+def create_product(product_name, description, rating, brand_id, product_type_id):
     """Create and return a product."""
 
-    product = Product(product_name=product_name, description=description, rating=rating, brand_id=brand_id)
+    product = Product(product_name=product_name, description=description, rating=rating, brand_id=brand_id, product_type_id=product_type_id)
 
     db.session.add(product)
     db.session.commit()
