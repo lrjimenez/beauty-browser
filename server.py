@@ -1,11 +1,16 @@
 """Server for Beauty Browser"""
 
-from flask import Flask, request, render_template
+from flask import (Flask, request, render_template, session, redirect)
 from flask_sqlalchemy import SQLAlchemy
 from model import connect_to_db
 import crud
 
+from jinja2 import StrictUndefined
+
+
 app = Flask(__name__)
+app.secret_key = "dev"
+app.jinja_env.undefined = StrictUndefined
 
 
 @app.route('/')
@@ -13,9 +18,17 @@ def index():
     return render_template('index.html')
 
 @app.route('/products')
-def product():
+def all_products():
     all_products = crud.get_products()
     return render_template('products.html', all_products=all_products)
+
+@app.route("/products/<product_id>")
+def show_product(product_id):
+    """Show details on a particular product."""
+
+    product = crud.get_product_by_id(product_id)
+
+    return render_template("product_details.html", product=product)
 
 # @app.route('/type')
 # def browse_by_type():

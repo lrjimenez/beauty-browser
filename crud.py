@@ -23,10 +23,10 @@ def create_product_type(product_type):
 
     return product_type
 
-def create_product(product_name, description, rating, brand_id, product_type_id):
+def create_product(product_name, description, rating, brand_id, product_type_id, currency_id, formulation_id):
     """Create and return a product."""
 
-    product = Product(product_name=product_name, description=description, rating=rating, brand_id=brand_id, product_type_id=product_type_id)
+    product = Product(product_name=product_name, description=description, rating=rating, brand_id=brand_id, product_type_id=product_type_id, currency_id=currency_id, formulation_id=formulation_id)
 
     db.session.add(product)
     db.session.commit()
@@ -80,6 +80,11 @@ def create_currency(currency_type, currency_sign):
 def get_products():
     """Return all products."""
     return Product.query.all()
+
+def get_product_by_id(product_id):
+    """Return one product"""
+    
+    return Product.query.get(product_id)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.product_name }} - Details{% endblock %}
+
+{% block content %}
+<h1>{{ product.product_name }}</h1>
+
+<p>
+    product description:
+  {{ product.description }}
+</p>
+
+<p>
+    product brand:
+  {{ product.brand.company_name }}
+</p>
+
+<p>
+  product type:
+{{ product.product_type.product_type }}
+</p>
+
+<p>
+  sold in:
+{{ product.currencies.currency_type }} {{product.currencies.currency_sign}}
+</p>
+
+<p>
+  retailer: 
+  <a href= "{{ product.brand.company_website }}" >{{ product.brand.company_website }}</a>
+</p>
+
+<p>
+  rating: {{ product.rating }}
+</p>
+{% endblock %}

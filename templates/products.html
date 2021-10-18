@@ -10,23 +10,28 @@
     products:
     </p>
 
-    <p>{{ all_products[1].product_name }}</p>
-    <p>{{ all_products[1].description }}</p>
-    <p>{{ all_products[1].product_type }}</p>
-    This is the brand object:
-    <p>{{ all_products[1].brand }}</p>
+    <!--<p>{{ all_products[1].product_name }}</p> -->
+    <!--<p>{{ all_products[1].description }}</p> -->
+    <!--<p>{{ all_products[1].product_type }}</p> -->
+    <!--This is the brand object:
+    <p>{{ all_products[1].brand }}</p> -->
 
-    This is the brand object's company name:
-    <p>{{ all_products[1].brand.company_name }}</p>
+    <!-- This is the brand object's company name: -->
+    <!--<p>{{ all_products[1].brand.company_name }}</p> -->
 
-    This is the brand object's company website:
-    <p>{{ all_products[1].brand.company_website }}</p>
+    <!--This is the brand object's company website: -->
+    <!--<p>{{ all_products[1].brand.company_website }}</p> -->
 
-    <!-- {% if all_products %}
+     <!--{% if all_products %} -->
    
 
         {% for product in all_products %}
-            <p> {{product.product_name}} </p>
+        <li>
+          <a href="/products/{{product.product_id}}">
+            {{ product.product_name }}
+          </a>
+        </li>
+            <!--<p> {{product.product_name}} </p> -->
         {% endfor %}
 
   {% endif %} -->
