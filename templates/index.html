@@ -10,11 +10,26 @@
       <h1>Welcome!</h1>
 
       <h2>Navigation</h2>
-      <ul>
         <li><a href="/products">View all products</a></li>
-        <li><a href="/type">View products by type</a></li>
-        <li><a href="/brand">View products by brand</a></li>
-      </ul>
-      
+        
+      <h2> Browse by product type:</h2>
+        <li>{% for product_type in product_types %}
+          <li>
+            <a href="/product_types/{{product_type.product_type}}">
+              {{ product_type.product_type }}
+            </a>
+          </li>
+          {% endfor %}    </li>
+        
+        <h2>Browse by brand:</h2>  
+        <li> {% for brand in brands %}
+          <li> 
+            <a href="/brands/{{brand.company_name}}">
+              {{ brand.company_name }}
+            </a>
+          </li>
+          {% endfor %}
     </div>
+
+    
     {% endblock %}

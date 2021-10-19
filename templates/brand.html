@@ -2,20 +2,19 @@
 
 {% block content %}
 <div
-  id="type-window"
+  id="brand-window"
   class="browse-window"
 >
   <div class="window-body">
     <p>
     product types:
     </p>
-        {% for product_type in product_types %}
+        {% for company_name in brands %}
         <li>
-          <a href="/product_types/{{product_type.product_type}}">
-            {{ product_type.product_type }}
+          <a href="/brands/{{brand.company_name}}">
+            {{ brand.company_name }}
           </a>
         </li>
         {% endfor %}    
   </div>
   {% endblock %}
-

@@ -15,7 +15,10 @@ app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    product_types = crud.get_product_types()
+    brands = crud.get_brands()
+    return render_template('index.html', product_types=product_types, brands=brands)
+
 
 @app.route('/products')
 def all_products():
@@ -30,24 +33,19 @@ def show_product(product_id):
 
     return render_template("product_details.html", product=product)
 
-# @app.route('/type')
-# def browse_by_type():
+@app.route('/type')
+def browse_by_type():
+    """Show all types of products."""
+
+    product_types = crud.get_product_types()
+
+    return render_template('type.html', product_types=product_types)
+
+# @app.route('/brand')
+# def browse_by_brand():
 
 
-#     """Query database and return all types of products."""
-
-#     sql = "SELECT product_type FROM product_types;"
-
-#     cursor = db.session.execute(sql)
-#     all_product_types = cursor.fetchall()
-
-#     return render_template('type.html', all_product_types=all_product_types)
-
-# @app.route('/lip_liner')
-# def browse_by_type():
-
-
-#     """Query database and return all lipliners."""
+#     """Query database and return all brands."""
 
 #     sql = "SELECT product_type FROM product_types;"
 

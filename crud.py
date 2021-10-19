@@ -86,6 +86,16 @@ def get_product_by_id(product_id):
     
     return Product.query.get(product_id)
 
+def get_product_types():
+    """Return all product_types.""" 
+    
+    return Product_Type.query.all()
+
+def get_brands():
+    """Return all brands."""
+
+    return Brand.query.all()
+
 
 if __name__ == '__main__':
     from server import app
