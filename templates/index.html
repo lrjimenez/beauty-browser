@@ -10,26 +10,32 @@
       <h1>Welcome!</h1>
 
       <h2>Navigation</h2>
-        <li><a href="/products">View all products</a></li>
+        <a href="/products">View all products</a>
         
       <h2> Browse by product type:</h2>
-        <li>{% for product_type in product_types %}
-          <li>
-            <a href="/product_types/{{product_type.product_type}}">
-              {{ product_type.product_type }}
-            </a>
-          </li>
-          {% endfor %}    </li>
+        {% for product_type in product_types %}
+          <form action='/type'>
+            <input type="checkbox" id="type" name="choose-type" value="{{product_type.product_type}}">
+            <label for="choose-type"> {{product_type.product_type}}</label><br>
+          <!-- </form> -->
+          {% endfor %}    
         
-        <h2>Browse by brand:</h2>  
-        <li> {% for brand in brands %}
-          <li> 
-            <a href="/brands/{{brand.company_name}}">
-              {{ brand.company_name }}
-            </a>
-          </li>
-          {% endfor %}
-    </div>
+      </div>
+        <br>
+       <div>
+          
+          <h2>Browse by brand:</h2>
+           <SELECT>
+            {% for brand in brands %}
+              <OPTION value={{brand.company_name}}>{{brand.company_name}}</option>
+            {% endfor %} </SELECT>
+          </div>
 
-    
+        <br>
+        <div>
+        <!--<form>-->
+          <button type="submit">Go</button>
+        </form>
+      </div>
+    </div>
     {% endblock %}

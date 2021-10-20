@@ -91,6 +91,10 @@ def get_product_types():
     
     return Product_Type.query.all()
 
+def get_products_by_type(type_choice):
+    "Return products of the same type"
+    return Product_Type.query.filter(Product_Type.product_type==(type_choice))
+
 def get_brands():
     """Return all brands."""
 

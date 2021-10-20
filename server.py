@@ -1,7 +1,6 @@
 """Server for Beauty Browser"""
 
 from flask import (Flask, request, render_template, session, redirect)
-from flask_sqlalchemy import SQLAlchemy
 from model import connect_to_db
 import crud
 
@@ -37,7 +36,10 @@ def show_product(product_id):
 def browse_by_type():
     """Show all types of products."""
 
-    product_types = crud.get_product_types()
+    type_choice = request.args.get('choose-type')
+    product_types = crud.get_products_by_type(type_choice)
+    
+    
 
     return render_template('type.html', product_types=product_types)
 
