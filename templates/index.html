@@ -1,41 +1,35 @@
 
-  {% extends 'base.html' %}
+{% extends 'base.html' %}
 
-  {% block content %}
-  <div
-    id="browse-by-choice"
-    class="choice-window"
-  >
-    <div class="window-body">
-      <h1>Welcome!</h1>
+{% block content %}
+<div
+  id="browse-by-choice"
+  class="choice-window"
+>
+  
+  <h1>Welcome!</h1>
 
-      <h2>Navigation</h2>
-        <a href="/products">View all products</a>
-        
-      <h2> Browse by product type:</h2>
-        {% for product_type in product_types %}
-          <form action='/type'>
-            <input type="checkbox" id="type" name="choose-type" value="{{product_type.product_type}}">
-            <label for="choose-type"> {{product_type.product_type}}</label><br>
-          <!-- </form> -->
-          {% endfor %}    
-        
-      </div>
-        <br>
-       <div>
-          
-          <h2>Browse by brand:</h2>
-           <SELECT>
-            {% for brand in brands %}
-              <OPTION value={{brand.company_name}}>{{brand.company_name}}</option>
-            {% endfor %} </SELECT>
-          </div>
+  <h2>Navigation</h2>
+  <a href="/products">View all products</a>
+    
+  <form action='/search-products'>
+    <h2> Choose a product type:</h2>
+    
+    {% for product_type in product_types %}
+        <input type="radio" id="type" name="choose-type" value="{{product_type.product_type_id}}">
+        <label for="choose-type">{{product_type.product_type}}</label>
+    {% endfor %}    
 
-        <br>
-        <div>
-        <!--<form>-->
-          <button type="submit">Go</button>
-        </form>
-      </div>
-    </div>
-    {% endblock %}
+    <h2>Choose a brand:</h2>
+
+    <SELECT name="choose-brand">
+      {% for brand in brands %}
+        <OPTION value={{brand.brand_id}}>{{brand.company_name}}</option>
+      {% endfor %} 
+    </SELECT>
+    <br>
+    <button type="submit">Search Products</button>
+  </form>
+</div>
+
+{% endblock %}

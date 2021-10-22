@@ -100,6 +100,13 @@ def get_brands():
 
     return Brand.query.all()
 
+def get_products_by_product_type_id_and_brand_id(product_type_id, brand_id):
+    """Get products by product_type_id & brand_id"""
+
+    return Product.query.filter(Product.product_type_id == product_type_id, Product.brand_id == brand_id).all()
+
+
+
 
 if __name__ == '__main__':
     from server import app

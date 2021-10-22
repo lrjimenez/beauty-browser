@@ -32,16 +32,19 @@ def show_product(product_id):
 
     return render_template("product_details.html", product=product)
 
-@app.route('/type')
+@app.route('/search-products')
 def browse_by_type():
     """Show all types of products."""
 
-    type_choice = request.args.get('choose-type')
-    product_types = crud.get_products_by_type(type_choice)
+    product_type_id = request.args.get('choose-type')
+    brand_id = request.args.get('choose-brand')  
+    print("**********product_type_id:", product_type_id, "brand_id:", brand_id)
+    user_selection = crud.get_products_by_product_type_id_and_brand_id(product_type_id=product_type_id, brand_id=brand_id)
+    print("*********** user_selection:", user_selection)
     
     
 
-    return render_template('type.html', product_types=product_types)
+    return render_template('product_results.html', user_selection=user_selection)
 
 # @app.route('/brand')
 # def browse_by_brand():

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for product_object in user_selection %}
+<a href="/products/{{product_object.product_id}}">
+  {{ product_object.product_name }}
+</a>
+
+  <br>
+{% endfor %} 
+
+{% endblock %}
+

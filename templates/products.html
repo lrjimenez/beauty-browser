@@ -3,18 +3,18 @@
 {% block content %}
 <div
   id="products-window"
-  class="browse-window"
 >
-  <div class="window-body">
+ 
     <p>
     products:
     </p>
         {% for product in all_products %}
-        <li>
+     
           <a href="/products/{{product.product_id}}">
             {{ product.product_name }}
           </a>
-        </li>
+          <br>
+        
         {% endfor %}
     
   </div>
