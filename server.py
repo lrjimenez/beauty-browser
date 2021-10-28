@@ -1,6 +1,6 @@
 """Server for Beauty Browser"""
 
-from flask import (Flask, request, render_template, session, redirect)
+from flask import (Flask, request, render_template, session, redirect, jsonify)
 from model import connect_to_db
 import crud
 
@@ -38,13 +38,21 @@ def browse_by_type():
 
     product_type_id = request.args.get('choose-type')
     brand_id = request.args.get('choose-brand')  
-    print("**********product_type_id:", product_type_id, "brand_id:", brand_id)
+    
     user_selection = crud.get_products_by_product_type_id_and_brand_id(product_type_id=product_type_id, brand_id=brand_id)
-    print("*********** user_selection:", user_selection)
+    
     
     
 
     return render_template('product_results.html', user_selection=user_selection)
+
+@app.route('/api/brand-list')
+def get_brand_list():
+    """Get brands from radio button selection"""
+    product_type_id = request.args.get("productTypeId")
+    brand_list = crud.get_brands_by_product_type_id(product_type_id)
+    return jsonify(brand_list)
+     
 
 # @app.route('/brand')
 # def browse_by_brand():

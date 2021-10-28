@@ -1,6 +1,8 @@
 
 {% extends 'base.html' %}
-
+{% block head %}
+<script src="/static/js/brand-menu.js"></script>
+{% endblock %}
 {% block content %}
 <div
   id="browse-by-choice"
@@ -16,16 +18,15 @@
     <h2> Choose a product type:</h2>
     
     {% for product_type in product_types %}
-        <input type="radio" id="type" name="choose-type" value="{{product_type.product_type_id}}">
+        <input type="radio" id="type" name="choose-type" value="{{product_type.product_type_id}}" class="product-type-radio">
         <label for="choose-type">{{product_type.product_type}}</label>
     {% endfor %}    
 
     <h2>Choose a brand:</h2>
 
-    <SELECT name="choose-brand">
-      {% for brand in brands %}
-        <OPTION value={{brand.brand_id}}>{{brand.company_name}}</option>
-      {% endfor %} 
+    <SELECT id="brand-menu" name="choose-brand">
+      
+  
     </SELECT>
     <br>
     <button type="submit">Search Products</button>

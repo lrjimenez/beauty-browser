@@ -86,6 +86,11 @@ def get_product_by_id(product_id):
     
     return Product.query.get(product_id)
 
+def get_product_by_product_type_id(product_type_id):
+    """Return all products of one product_type_id"""
+
+    return Product.query.filter(Product.product_type_id==(product_type_id)).all()
+
 def get_product_types():
     """Return all product_types.""" 
     
@@ -99,6 +104,17 @@ def get_brands():
     """Return all brands."""
 
     return Brand.query.all()
+
+def get_brands_by_product_type_id(product_type_id):
+    """Return brands that have at least one product of a product_type_id"""
+    unique_brands = set()
+    for product in get_product_by_product_type_id(product_type_id):
+        if product.brand.company_name is not None:
+            unique_brands.add(product.brand.company_name)
+    return list(unique_brands)
+
+
+
 
 def get_products_by_product_type_id_and_brand_id(product_type_id, brand_id):
     """Get products by product_type_id & brand_id"""
