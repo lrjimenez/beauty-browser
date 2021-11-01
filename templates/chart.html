@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Chart of Product Ratings{% endblock %}
+
+{% block head %}
+  {# ChartJS #}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+  <div id="chart-content">
+    <h1>Product Ratings</h1>
+
+    <canvas id="bar-chart"></canvas>
+
+
+{% endblock %}
+
+{% block js %}
+  <script src="/static/js/chart.js"></script>
+{% endblock %}

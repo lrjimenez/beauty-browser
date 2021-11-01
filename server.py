@@ -34,12 +34,12 @@ def show_product(product_id):
 
 @app.route('/search-products')
 def browse_by_type():
-    """Show all types of products."""
+    """Show products by user selection"""
 
     product_type_id = request.args.get('choose-type')
-    brand_id = request.args.get('choose-brand')  
+    company_name = request.args.get('choose-brand')  
     
-    user_selection = crud.get_products_by_product_type_id_and_brand_id(product_type_id=product_type_id, brand_id=brand_id)
+    user_selection = crud.get_products_by_product_type_id_and_company_name(product_type_id=product_type_id, company_name=company_name)
     
     
     
@@ -52,22 +52,17 @@ def get_brand_list():
     product_type_id = request.args.get("productTypeId")
     brand_list = crud.get_brands_by_product_type_id(product_type_id)
     return jsonify(brand_list)
-     
 
-# @app.route('/brand')
-# def browse_by_brand():
+@app.route('/chart')
+def show_chartjs():
+    """Show chart."""
 
+    return render_template('chart.html')
 
-#     """Query database and return all brands."""
-
-#     sql = "SELECT product_type FROM product_types;"
-
-#     cursor = db.session.execute(sql)
-#     all_product_types = cursor.fetchall()
-
-#     return render_template('type.html', all_product_types=all_product_types)
-
-
+@app.route('/brand-ratings')
+def get_brand_avg_rating():
+    """"""
+       
 
 if __name__ == '__main__':
     connect_to_db(app)

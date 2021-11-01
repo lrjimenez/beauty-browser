@@ -6,7 +6,7 @@ $(document).ready(()=>{
             console.log(response);
             let options = "";
             for (const brand of response) {
-                options = options + (`<option> ${brand} </option>`)
+                options = options + (`<option>${brand}</option>`)
             }
             $("#brand-menu").html(options)
         })
