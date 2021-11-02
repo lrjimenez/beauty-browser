@@ -2,26 +2,30 @@
 {% extends 'base.html' %}
 {% block title %}Beauty Browser{% endblock %}
 {% block head %}
-<script src="/static/js/brand-menu.js"></script>
+
 {% endblock %}
 {% block content %}
-<div
-  id="browse-by-choice"
-  class="choice-window"
->
-  
+
+  <body>
+   
+    
+    
   <h1>Welcome!</h1>
 
-  <h2>Navigation</h2>
   <a href="/products">View all products</a>
     
   <form action='/search-products'>
     <h2> Choose a product type:</h2>
-    
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
     {% for product_type in product_types %}
         <input type="radio" id="type" name="choose-type" value="{{product_type.product_type_id}}" class="product-type-radio">
         <label for="choose-type">{{product_type.product_type}}</label>
     {% endfor %}    
+        </div>
+      </div>
+    </div>
 
     <h2>Choose a brand:</h2>
 
@@ -32,6 +36,9 @@
     <br>
     <button type="submit">Search Products</button>
   </form>
-</div>
+    
+
+</body>
+
 
 {% endblock %}
