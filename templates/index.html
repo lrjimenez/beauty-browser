@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% block title %}Beauty Browser{% endblock %}
 {% block head %}
-
+           
 {% endblock %}
 {% block content %}
 
@@ -10,10 +10,10 @@
    
     
     
-  <h1>Welcome!</h1>
+  <h2>Welcome!</h2>
 
-  <a href="/products">View all products</a>
-    
+  <p class ="instructions">Beauty browser displays information about cosmetic products across brands and retailers. Make your selections below to begin browsing. </p>
+    <br>
   <form action='/search-products'>
     <h2> Choose a product type:</h2>
     <div class="container-fluid">
@@ -26,15 +26,22 @@
         </div>
       </div>
     </div>
+    <br>
 
     <h2>Choose a brand:</h2>
 
-    <SELECT id="brand-menu" name="choose-brand">
+    <select class="dropdown" id="brand-menu" name="choose-brand">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        
+      </button>
       
-  
-    </SELECT>
+    </select>
+
+    
     <br>
-    <button type="submit">Search Products</button>
+    <br>
+    <button type="submit" class="btn btn-primary">Search Products</button>
+    
   </form>
     
 
