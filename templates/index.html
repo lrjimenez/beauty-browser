@@ -7,13 +7,14 @@
 {% block content %}
 
   <body>
-   
+   <br>
+    <div class="intro">
+      
+      <h2>Welcome!</h2>
+      <p>Beauty browser displays information about cosmetic products across brands and retailers. Make your selections below to begin browsing. </p>
     
-    
-  <h2>Welcome!</h2>
-
-  <p class ="instructions">Beauty browser displays information about cosmetic products across brands and retailers. Make your selections below to begin browsing. </p>
-    <br>
+    </div>  
+  <br>
   <form action='/search-products'>
     <h2> Choose a product type:</h2>
     <div class="container-fluid">
@@ -34,6 +35,7 @@
       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         
       </button>
+      <option selected>  Brands         </option>
       
     </select>
 
@@ -41,9 +43,9 @@
     <br>
     <br>
     <button type="submit" class="btn btn-primary">Search Products</button>
-    
+   
   </form>
-    
+  
 
 </body>
 

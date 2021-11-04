@@ -1,43 +1,49 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ product.product_name }} - Details{% endblock %}
+{% block title %}{{ product.product_name }} Details{% endblock %}
 
 
 {% block content %}
-<p><h4>product name: </h4>
-  {{ product.product_name }}
+<div class="container">
+  <p class="text-start">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col-6">
+    </div>
+    <div class="card">
+      <div class="container">
+      <div class="row">
+      <div class="col">
+      </div>
+    <div class="col-6">
+    </div>
+      <div class="card-body">
+        <h5 class="card-title"> 
+        {{ product.product_name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+        
+        Brand Name:
+        {{ product.brand.company_name }}
+        </h6>
+        <p class="card-text">
+          Description: 
+          {{ product.description }} 
+        <br>
+          Rating: 
+          {{ product.rating }}
+      </p>
+          Retailer: 
+          <a href= "{{ product.brand.company_website }}" >{{ product.brand.company_website }}</a></a>
+      </div>
+    </div>
+    </div>
+      <div class="col">
+      </div>
+  </div>
 </p>
-
-
-<p><h4>brand name: </h4>
-{{ product.brand.company_name }}
-</p>
-
-
-<p><h4>description: </h4>
-  {{ product.description }}
-</p>
-
-
-<p><h4>product type: </h4>
-{{ product.product_type.product_type }}
-</p>
-
-
-<p><h4>currency: </h4>
-{{ product.currencies.currency_type }} {{product.currencies.currency_sign}}
-</p>
-
-
-<p><h4>retailer: </h4>
-<a href= "{{ product.brand.company_website }}" >{{ product.brand.company_website }}</a>
-</p>
-
-
-<p><h4>rating: </h4>
-{{ product.rating }}
-</p>
-
+</div>
+    
   
 
 {% endblock %}

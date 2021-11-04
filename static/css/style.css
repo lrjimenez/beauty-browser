@@ -1,32 +1,46 @@
 body {
-    width: 0 auto;
-    margin: 0 auto;
-    padding: 0;
+    
     font-family: 'Syne' ;
     background-color: #DAF7E9;
-    text-align: center;
   }
+
+body canvas {
+  color: #F9FFFB;
+}
   
   .navbar {
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: left;
     justify-content: space-between;
 }
 
 .bg-light {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;
+  background-color: #FC5197;
 }
 
+.navbar-light {
+  color: #FC5197;
+} 
+
+
+
   div {
-    background-color: #DAF7E9
-    
+    background-color: #DAF7E9;
+  }
+
+  
+
+  div.intro {
+    text-align: center;
   }
 
   h1 {
     font-family: 'Monoton';
+    text-align: left;
+    color: #FC5197
     
   }
   
@@ -41,10 +55,15 @@ body {
   }
 
   a {
-    color: #107A74;
+    color: #FC5197;
     text-decoration: underline;
     font-family: 'Syne' ;
 }
+
+a.logo {
+  text-decoration: none;
+}
+  
 /* mouse over link */
 a:hover {
   color: #211C1A;
@@ -53,14 +72,11 @@ a:hover {
 p.instructions {
   font-family: 'Syne' ;
   font-size: 20px;
-  text-align: center;
+  text-align: auto;
 
 }
 
-div.content {
-  text-align: center;
 
-}
 
 .btn-primary {
   color: #211C1A;
@@ -73,6 +89,25 @@ select {
   text-align: center;
   color: -internal-light-dark(#211C1A, #F7E4DA);
 }
+
+footer {
+  text-align: center;
+}
+
+main {
+  width: auto;
+}
+
+form {
+  text-align: center;
+}
+
+canvas.chart {
+  color: #F9FFFB;
+  background-color: #F9FFFB;
+}
+
+
 
 
  

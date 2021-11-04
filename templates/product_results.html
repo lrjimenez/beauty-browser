@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h2>Results: </h2>
 
 {% for product_object in user_selection %}
 <a href="/products/{{product_object.product_id}}">
