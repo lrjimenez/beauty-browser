@@ -20,3 +20,6 @@ Python, HTML, CSS, Javascript
     `python3 seed_database.py`
 5. Run the server  
     `python3 server.py`
+6. View Beauty Browser at your local host   
+    `http://localhost:5000/`
+
