@@ -2,7 +2,7 @@
 Beauty Browser displays information about cosmetic products across brands and retailers.
 
 ## Stack
-Python, HTML, CSS, Javascript
+Python, PostgreSQL, Flask, Jinja, HTML, CSS, Javascript
 
 ## Features
 - Users can search for products by selecting a combination of product type and brand name.
