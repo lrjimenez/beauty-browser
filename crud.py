@@ -34,10 +34,10 @@ def create_product(product_name, description, rating, brand_id, product_type_id,
     return product
 
 
-def create_image(image_link):
+def create_image(image_link, product_id):
     """Create and return an image."""
 
-    image = Image(image_link=image_link)
+    image = Image(image_link=image_link, product_id=product_id)
 
     db.session.add(image)
     db.session.commit()

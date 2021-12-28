@@ -118,17 +118,39 @@ for product in products_in_db:
     db_product = crud.create_product(product[0], product[1], product[2], brand_id, product_type_id, currency_id, formulation_id)
 
 
-# Create images, store them in list
+# Create images, store them in set
 images_in_db = set()
 for product in makeup_data:
-    image_link = (product['image_link'],)
-    images_in_db.add(image_link) #add link to set of images
+    product_name, description, rating, company_name, product_type, currency_type, formulation_category = (
+        product['name'],
+        product['description'],
+        product['rating'],
+        product['brand'],
+        product['product_type'],
+        product['currency'],
+        product['category']
+    )
+    brand_id = brands_dict[company_name]
+    product_type_id = product_type_ids[product_type]
+    currency_id = currency_ids[currency_type]
+    formulation_id = formulation_ids[formulation_category]
+    product_id = model.Product.query.filter(
+        model.Product.product_name==product_name, 
+        model.Product.description==description, 
+        model.Product.brand_id==brand_id,
+        model.Product.product_type_id==product_type_id,
+        model.Product.currency_id==currency_id,
+        model.Product.formulation_id==formulation_id,
+        #model.Product.rating==string(rating),
+        ).one().product_id
+    image = (product['image_link'], product_id)
+    images_in_db.add(image) #add link to set of images
 
 print("Number of unique images: ", len(images_in_db))
 
 #for image link in set
 for image in images_in_db:
-    db_image = crud.create_image(image)
+    db_image = crud.create_image(image[0], image[1])
 
 
 

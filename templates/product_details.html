@@ -4,46 +4,52 @@
 
 
 {% block content %}
+
 <div class="container">
   <p class="text-start">
-  <div class="row">
-    <div class="col">
-    </div>
-    <div class="col-6">
-    </div>
-    <div class="card">
-      <div class="container">
-      <div class="row">
+    <div class="row">
       <div class="col">
       </div>
-    <div class="col-6">
-    </div>
-      <div class="card-body">
-        <h5 class="card-title"> 
-        {{ product.product_name }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">
-        
-        Brand Name:
-        {{ product.brand.company_name }}
-        </h6>
-        <p class="card-text">
-          Description: 
-          {{ product.description }} 
-        <br>
-          Rating: 
-          {{ product.rating }}
-      </p>
-          Retailer: 
-          <a href= "{{ product.brand.company_website }}" >{{ product.brand.company_website }}</a></a>
+      <div class="col-6">
       </div>
-    </div>
-    </div>
+      
+      <div class="card">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-6">
+            </div>
+            
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ product.product_name }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+
+                Brand Name:
+                {{ product.brand.company_name }}
+              </h6>
+              <img src="{{ product.images[0].image_link }}" class="mb-4" style="max-height: 500px;" />
+              <p class="card-text">
+                Description:
+                {{ product.description }}
+                <br>
+                <br>
+                Rating:
+                {{ product.rating }}
+              </p>
+              Retailer:
+              <a href="{{ product.brand.company_website }}">{{
+                product.brand.company_website }}</a></a>
+          </div>
+        </div>
+      </div>
       <div class="col">
       </div>
-  </div>
-</p>
+    </div>
+  </p>
 </div>
-    
-  
+
+
 
 {% endblock %}
