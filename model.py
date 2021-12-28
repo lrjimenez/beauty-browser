@@ -63,7 +63,6 @@ class Image(db.Model):
     image_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     image_link = db.Column(db.String)
     product_id = db.Column(db.Integer, db.ForeignKey("products.product_id"))
-
     def __repr__(self):
         return f"<Image image_id={self.image_id} image_link={self.image_link}>"
     product = db.relationship('Product', back_populates = "images")
