@@ -34,7 +34,7 @@ brands_dict = {} #dictionary with company name keys and brand id values
 #for tuple in set
 #create a brand using create_brand crud function
 #use brand tuple at indexes 0 and 1 to get paramaters for create_brand
-#set brands_dict at key db_brand.company_name to db_brand.brand_id
+#set brands_dict at key db_brand.company_name to have value db_brand.brand_id
 for brand in brands_in_db:
     db_brand = crud.create_brand(brand[0], brand[1]) #created a brand object of the Brand class using crud function
     brands_dict[db_brand.company_name] = db_brand.brand_id #adding to dictionary
@@ -125,6 +125,7 @@ for product in makeup_data:
     )
     
     product_tuple = (product_name, description, rating, company_name, product_type, currency_type, formulation_category, image_link) #create a tuple with products
+    print(product_tuple)
     products_in_db.add(product_tuple) #add tuple to set of products
 
 print("Number of unique products: ", len(products_in_db))
@@ -137,6 +138,7 @@ for product in products_in_db:
     currency_id = currency_ids[product[5]]
     formulation_id = formulation_ids[product[6]]
     image_id = image_ids[image_link]
+
     db_product = crud.create_product(product[0], product[1], product[2], brand_id, product_type_id, currency_id, formulation_id, image_id)
 
 
