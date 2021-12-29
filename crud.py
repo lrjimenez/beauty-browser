@@ -23,10 +23,10 @@ def create_product_type(product_type):
 
     return product_type
 
-def create_product(product_name, description, rating, brand_id, product_type_id, currency_id, formulation_id):
+def create_product(product_name, description, rating, brand_id, product_type_id, currency_id, formulation_id, image_id):
     """Create and return a product."""
 
-    product = Product(product_name=product_name, description=description, rating=rating, brand_id=brand_id, product_type_id=product_type_id, currency_id=currency_id, formulation_id=formulation_id)
+    product = Product(product_name=product_name, description=description, rating=rating, brand_id=brand_id, product_type_id=product_type_id, currency_id=currency_id, formulation_id=formulation_id, image_id=image_id)
 
     db.session.add(product)
     db.session.commit()
@@ -34,10 +34,10 @@ def create_product(product_name, description, rating, brand_id, product_type_id,
     return product
 
 
-def create_image(image_link, product_id):
+def create_image(image_link):
     """Create and return an image."""
 
-    image = Image(image_link=image_link, product_id=product_id)
+    image = Image(image_link=image_link)
 
     db.session.add(image)
     db.session.commit()

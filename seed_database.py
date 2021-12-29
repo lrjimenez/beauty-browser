@@ -14,8 +14,8 @@ model.db.create_all()
 # Load makeup data from JSON file
 with open('data/products.json') as f:
     makeup_data = json.loads(f.read())
-    #small_set = makeup_data[0:1]
-    #pprint(small_set)
+    small_set = makeup_data[0:1]
+    pprint(small_set)
     
 # Create brands, store them in a set
 brands_in_db = set()
@@ -32,6 +32,9 @@ print("Number of unique_brands: ", len(brands_in_db))
 brands_dict = {} #dictionary with company name keys and brand id values
 
 #for tuple in set
+#create a brand using create_brand crud function
+#use brand tuple at indexes 0 and 1 to get paramaters for create_brand
+#set brands_dict at key db_brand.company_name to db_brand.brand_id
 for brand in brands_in_db:
     db_brand = crud.create_brand(brand[0], brand[1]) #created a brand object of the Brand class using crud function
     brands_dict[db_brand.company_name] = db_brand.brand_id #adding to dictionary
@@ -90,68 +93,48 @@ for formulation in formulations_in_db:
     formulation_ids[db_formulation.formulation_category] = db_formulation.formulation_id
 
 
+
+# Create images, store them in set
+images_in_db = set()
+for product in makeup_data:
+    image_link = product['image_link']
+    images_in_db.add(image_link) #add link to set of images
+
+print("Number of unique images: ", len(images_in_db))
+image_ids= {}
+#for image link in set
+for image_link in images_in_db:
+    db_image = crud.create_image(image_link)
+    image_ids[db_image.image_link] = db_image.image_id
+
 # Create products, store them in a set
 products_in_db = set()
 for product in makeup_data:
-    product_name, description, rating, company_name, product_type, currency_type, formulation_category = (
+    product_name, description, rating, company_name, product_type, currency_type, formulation_category, image_link = (
         product['name'],
         product['description'],
         product['rating'],
         product['brand'],
         product['product_type'],
         product['currency'],
-        product['category']
+        product['category'],
+        product['image_link']
     )
     
-    product_tuple = (product_name, description, rating, company_name, product_type, currency_type, formulation_category) #create a tuple with products
+    product_tuple = (product_name, description, rating, company_name, product_type, currency_type, formulation_category, image_link) #create a tuple with products
     products_in_db.add(product_tuple) #add tuple to set of products
 
 print("Number of unique products: ", len(products_in_db))
 
-#for tuple in set
+#for product tuple in products_in_db set
 for product in products_in_db:
     company_name = product[3]
     brand_id = brands_dict[company_name] #brand_id, value from the brands_dict using the company name as the key
     product_type_id = product_type_ids[product[4]]
     currency_id = currency_ids[product[5]]
     formulation_id = formulation_ids[product[6]]
-    db_product = crud.create_product(product[0], product[1], product[2], brand_id, product_type_id, currency_id, formulation_id)
-
-
-# Create images, store them in set
-images_in_db = set()
-for product in makeup_data:
-    product_name, description, rating, company_name, product_type, currency_type, formulation_category = (
-        product['name'],
-        product['description'],
-        product['rating'],
-        product['brand'],
-        product['product_type'],
-        product['currency'],
-        product['category']
-    )
-    brand_id = brands_dict[company_name]
-    product_type_id = product_type_ids[product_type]
-    currency_id = currency_ids[currency_type]
-    formulation_id = formulation_ids[formulation_category]
-    product_id = model.Product.query.filter(
-        model.Product.product_name==product_name, 
-        model.Product.description==description, 
-        model.Product.brand_id==brand_id,
-        model.Product.product_type_id==product_type_id,
-        model.Product.currency_id==currency_id,
-        model.Product.formulation_id==formulation_id,
-        #model.Product.rating==string(rating),
-        ).one().product_id
-    image = (product['image_link'], product_id)
-    images_in_db.add(image) #add link to set of images
-
-print("Number of unique images: ", len(images_in_db))
-
-#for image link in set
-for image in images_in_db:
-    db_image = crud.create_image(image[0], image[1])
-
+    image_id = image_ids[image_link]
+    db_product = crud.create_product(product[0], product[1], product[2], brand_id, product_type_id, currency_id, formulation_id, image_id)
 
 
 

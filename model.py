@@ -44,6 +44,7 @@ class Product(db.Model):
     product_type_id = db.Column(db.Integer, db.ForeignKey("product_types.product_type_id"))
     formulation_id = db.Column(db.Integer, db.ForeignKey("formulations.formulation_id"), nullable=True)
     currency_id = db.Column(db.Integer, db.ForeignKey("currencies.currency_id"))
+    image_id = db.Column(db.Integer, db.ForeignKey("images.image_id"))
 
     def __repr__(self):
         return f"<Product product_id={self.product_id} product_name={self.product_name}>"
@@ -62,7 +63,7 @@ class Image(db.Model):
 
     image_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     image_link = db.Column(db.String)
-    product_id = db.Column(db.Integer, db.ForeignKey("products.product_id"))
+    
     def __repr__(self):
         return f"<Image image_id={self.image_id} image_link={self.image_link}>"
     product = db.relationship('Product', back_populates = "images")
