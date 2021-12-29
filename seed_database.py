@@ -104,8 +104,11 @@ print("Number of unique images: ", len(images_in_db))
 image_ids= {}
 #for image link in set
 for image_link in images_in_db:
+    #instantiate an object of the image class using crud function
     db_image = crud.create_image(image_link)
+    #set the image_ids dictionary value to be the image_id at each image link key
     image_ids[db_image.image_link] = db_image.image_id
+   
 
 # Create products, store them in a set
 products_in_db = set()
