@@ -7,12 +7,12 @@
 >
   <div class="window-body">
     <p>
-    product types:
+    featured brands:
     </p>
-        {% for company_name in brands %}
+        {% for brand_name in all_brands %}
         <li>
-          <a href="/brands/{{brand.company_name}}">
-            {{ brand.company_name }}
+          <a href="/brands/{{brand_name.brand_name}}">
+            {{ brand_name.brand_name }}
           </a>
         </li>
         {% endfor %}    

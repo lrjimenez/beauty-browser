@@ -27,7 +27,7 @@
               <h6 class="card-subtitle mb-2 text-muted">
 
                 Brand Name:
-                {{ product.brand.company_name }}
+                {{ product.brand.brand_name }}
               </h6>
               <img src="{{ product.images.image_link }}" class="mb-4" style="max-height: 500px;" />
               <p class="card-text">
@@ -39,8 +39,8 @@
                 {{ product.rating }}
               </p>
               Retailer:
-              <a href="{{ product.brand.company_website }}">{{
-                product.brand.company_website }}</a></a>
+              <a href="{{ product.brand.brand_website }}">{{
+                product.brand.brand_website }}</a></a>
           </div>
         </div>
       </div>

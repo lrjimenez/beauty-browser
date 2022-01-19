@@ -10,11 +10,11 @@ class Brand(db.Model):
     __tablename__ = "brands"
 
     brand_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    company_name = db.Column(db.String)
-    company_website = db.Column(db.String)
+    brand_name = db.Column(db.String)
+    brand_website = db.Column(db.String)
 
     def __repr__(self):
-        return f"<Brand brand_id={self.brand_id} company_name={self.company_name}>"
+        return f"<Brand brand_id={self.brand_id} brand_name={self.brand_name}>"
     products = db.relationship('Product', back_populates = "brand")
 
 

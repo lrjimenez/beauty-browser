@@ -24,6 +24,11 @@ def all_products():
     all_products = crud.get_products()
     return render_template('products.html', all_products=all_products)
 
+@app.route('/brands')
+def all_brands():
+    all_brands = crud.get_brands()
+    return render_template('brand.html', all_brands=all_brands)
+
 @app.route("/products/<product_id>")
 def show_product(product_id):
     """Show details on a particular product."""
@@ -37,9 +42,9 @@ def browse_by_type():
     """Show products by user selection"""
 
     product_type_id = request.args.get('choose-type')
-    company_name = request.args.get('choose-brand')  
+    brand_name = request.args.get('choose-brand')  
     
-    user_selection = crud.get_products_by_product_type_id_and_company_name(product_type_id=product_type_id, company_name=company_name)
+    user_selection = crud.get_products_by_product_type_id_and_brand_name(product_type_id=product_type_id, brand_name=brand_name)
     
     
     

@@ -3,10 +3,10 @@
 from model import db, Brand, Product_Type, Product, Image, Formulation, Tag, Currency, connect_to_db
 
 
-def create_brand(company_name, company_website):
+def create_brand(brand_name, brand_website):
     """Create and return a brand"""
 
-    brand = Brand(company_name=company_name, company_website=company_website)
+    brand = Brand(brand_name=brand_name, brand_website=brand_website)
 
     db.session.add(brand)
     db.session.commit()
@@ -110,26 +110,26 @@ def get_brands_by_product_type_id(product_type_id):
     unique_brands = set()
     #db.session.query(Brand).join(Product).filter(Product.product_type_id==4).all()
     for product in get_product_by_product_type_id(product_type_id):
-        if product.brand.company_name is not None:
-            unique_brands.add(product.brand.company_name)
+        if product.brand.brand_name is not None:
+            unique_brands.add(product.brand.brand_name)
     return list(unique_brands)
 
 
-def get_products_by_product_type_id_and_company_name(product_type_id, company_name):
-    """Get products by product_type_id & company_name"""
+def get_products_by_product_type_id_and_brand_name(product_type_id, brand_name):
+    """Get products by product_type_id & brand_name"""
 
     all_prods_of_type = Product.query.filter(Product.product_type_id == product_type_id).options(db.joinedload("brand")).all()
     prods_of_brand = []
     for prod in all_prods_of_type:
-        if prod.brand.company_name == company_name:
+        if prod.brand.brand_name == brand_name:
             prods_of_brand.append(prod)
     return prods_of_brand
-    # return Product.query.filter(Product.product_type_id == product_type_id, Brand.company_name == company_name).all()
-    # db.session.query(Product.product_name, Brand.company_name).filter(Brand.company_name == "essie", Product.product_type_id == 3).all()
+    # return Product.query.filter(Product.product_type_id == product_type_id, Brand.brand_name == brand_name).all()
+    # db.session.query(Product.product_name, Brand.brand_name).filter(Brand.brand_name == "essie", Product.product_type_id == 3).all()
 
 def get_avg_brand_rating(brand_id):
     """Get the average of product ratings for all products by a brand"""
-    brand_ratings = db.session.query(Product.brand_id, Brand.company_name,qProduct.product_name, Product.rating).filter(Brand.brand_id == brand_id).all()
+    brand_ratings = db.session.query(Product.brand_id, Brand.brand_name,qProduct.product_name, Product.rating).filter(Brand.brand_id == brand_id).all()
 
 
 

@@ -20,12 +20,12 @@ with open('data/products.json') as f:
 # Create brands, store them in a set
 brands_in_db = set()
 for product in makeup_data:
-    company_name, company_website = (
+    brand_name, brand_website = (
         product['brand'],
         product['website_link'],
     )
     
-    brand_tuple = (company_name, company_website) #create a tuple with product brand as company_name and website link
+    brand_tuple = (brand_name, brand_website) #create a tuple with product brand as brand_name and website link
     brands_in_db.add(brand_tuple) #add tuples to set of brands
 
 print("Number of unique_brands: ", len(brands_in_db))
@@ -34,10 +34,10 @@ brands_dict = {} #dictionary with company name keys and brand id values
 #for tuple in set
 #create a brand using create_brand crud function
 #use brand tuple at indexes 0 and 1 to get paramaters for create_brand
-#set brands_dict at key db_brand.company_name to have value db_brand.brand_id
+#set brands_dict at key db_brand.brand_name to have value db_brand.brand_id
 for brand in brands_in_db:
     db_brand = crud.create_brand(brand[0], brand[1]) #created a brand object of the Brand class using crud function
-    brands_dict[db_brand.company_name] = db_brand.brand_id #adding to dictionary
+    brands_dict[db_brand.brand_name] = db_brand.brand_id #adding to dictionary
    
 # Create product_types, store them in a set
 product_types_in_db = set()
@@ -113,7 +113,7 @@ for image_link in images_in_db:
 # Create products, store them in a set
 products_in_db = set()
 for product in makeup_data:
-    product_name, description, rating, company_name, product_type, currency_type, formulation_category, image_link = (
+    product_name, description, rating, brand_name, product_type, currency_type, formulation_category, image_link = (
         product['name'],
         product['description'],
         product['rating'],
@@ -124,7 +124,7 @@ for product in makeup_data:
         product['image_link']
     )
     
-    product_tuple = (product_name, description, rating, company_name, product_type, currency_type, formulation_category, image_link) #create a tuple with products
+    product_tuple = (product_name, description, rating, brand_name, product_type, currency_type, formulation_category, image_link) #create a tuple with products
     print(product_tuple)
     products_in_db.add(product_tuple) #add tuple to set of products
 
@@ -132,8 +132,8 @@ print("Number of unique products: ", len(products_in_db))
 
 #for product tuple in products_in_db set
 for product in products_in_db:
-    company_name = product[3]
-    brand_id = brands_dict[company_name] #brand_id, value from the brands_dict using the company name as the key
+    brand_name = product[3]
+    brand_id = brands_dict[brand_name] #brand_id, value from the brands_dict using the company name as the key
     product_type_id = product_type_ids[product[4]]
     currency_id = currency_ids[product[5]]
     formulation_id = formulation_ids[product[6]]
